@@ -1,0 +1,10 @@
+# TajMed Agent — Nebius x NVIDIA Global AI Hackathon
+streamlit>=1.35
+openai>=1.40
+pandas>=2.1
+plotly>=5.18
+python-dotenv>=1.0
+numpy>=1.26
+# MQEA-EW early-warning (optional; used when /workspace/mqea_ew is available)
+lightgbm>=4.3,<5
+scikit-learn>=1.4
