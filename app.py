@@ -131,7 +131,16 @@ if df is not None:
         with tab_tj:
             st.write(expl.get("tj") or "—")
         if expl.get("mocked"):
-            st.caption("Показан offline mock (нет NEBIUS_API_KEY или включён режим mock).")
+            err = expl.get("error")
+            if err == "missing_api_key":
+                st.caption("Показан offline mock: нет NEBIUS_API_KEY (см. `.env.example`).")
+            elif err:
+                st.warning(
+                    f"API Nebius недоступен (`{err}`). Показан offline mock. "
+                    f"Проверьте ключ и `NEBIUS_MODEL`. Детали: {expl.get('error_detail', '')[:240]}"
+                )
+            else:
+                st.caption("Показан offline mock (режим mock или нет ключа).")
         else:
             st.caption(f"Модель: `{expl.get('model')}`")
 
